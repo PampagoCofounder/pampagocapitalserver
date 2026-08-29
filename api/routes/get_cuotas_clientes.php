@@ -1,12 +1,12 @@
 <?php
 
-require __DIR__ . '/../config/database.php';
-require __DIR__ . '/../middleware/auth.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../middleware/auth.php';
 
 header("Content-Type: application/json");
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-
     http_response_code(405);
 
     echo json_encode([
@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 try {
 
-    // Validar JWT
+    // 🔐 Validar JWT
     $usuario = validarJWT();
 
-    // Obtener usuario_id desde JWT
+    // 🔑 Obtener usuario_id del JWT
     if (!isset($usuario['usuario_id'])) {
 
         http_response_code(401);
@@ -41,36 +41,29 @@ try {
 
     $stmt = $db->prepare("
         SELECT
-            id,
-            usuario_id,
-            nombre_cliente,
-            apellido_cliente,
-            dni_cliente,
-            domicilio_fiscal_cliente,
-            telefono_cliente,
-            tipo_trabajo,
-            tipo_cliente,
-            created_at
-        FROM datos_cliente
-        WHERE usuario_id = ?
+            c.id,
+            c.numero_cuota,
+            c.fecha_vencimiento,
+            c.importe,
+            c.estado,
+            c.producto_bancario_id
+        FROM cuotas_clientes c
+
+        INNER JOIN productos_bancarios p
+            ON c.producto_bancario_id = p.id
+
+        INNER JOIN datos_cliente d
+            ON p.datos_cliente_id = d.id
+
+        WHERE d.usuario_id = ?
+
+        ORDER BY c.id DESC
         LIMIT 100
     ");
 
     $stmt->execute([$usuario_id]);
 
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (!$data) {
-
-        http_response_code(404);
-
-        echo json_encode([
-            "success" => false,
-            "error" => "No se encontraron datos del cliente"
-        ]);
-
-        exit;
-    }
 
     echo json_encode([
         "success" => true,

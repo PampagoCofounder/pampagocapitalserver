@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
 
 try {
 
-    // Validar JWT
+
     $usuario = validarJWT();
 
-    // Obtener usuario_id desde JWT
+
     if (!isset($usuario['usuario_id'])) {
 
         http_response_code(401);
@@ -39,20 +39,30 @@ try {
 
     $db = (new Database())->connect();
 
+
+
     $stmt = $db->prepare("
         SELECT
-            id,
-            usuario_id,
-            nombre_cliente,
-            apellido_cliente,
-            dni_cliente,
-            domicilio_fiscal_cliente,
-            telefono_cliente,
-            tipo_trabajo,
-            tipo_cliente,
-            created_at
-        FROM datos_cliente
-        WHERE usuario_id = ?
+            pb.id,
+            pb.tipo_producto,
+            pb.montos,
+            pb.cantidad_prestamos_disponibles,
+            pb.cantidad_prestamos_vigentes,
+            pb.cantidad_prestamos_finalizados,
+            pb.cant_cuotas,
+            pb.tasa,
+            pb.fecha_otorgamiento,
+            pb.estado,
+            pb.datos_cliente_id
+
+        FROM productos_bancarios pb
+
+        INNER JOIN datos_cliente dc
+            ON dc.id = pb.datos_cliente_id
+
+        WHERE dc.usuario_id = ?
+
+        ORDER BY pb.id DESC
         LIMIT 100
     ");
 
@@ -66,7 +76,7 @@ try {
 
         echo json_encode([
             "success" => false,
-            "error" => "No se encontraron datos del cliente"
+            "error" => "No se encontraron productos bancarios para este usuario"
         ]);
 
         exit;

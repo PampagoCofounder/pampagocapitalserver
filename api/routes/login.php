@@ -53,7 +53,7 @@ $key = "mi_clave_super_secreta_de_32_caracteres_minimo_2026";
 $payload = [
     "iat" => time(),
     "exp" => time() + (60*60),
-    "id" => $user["id"],
+    "usuario_id" => (int) $user["id"],
     "nombre"=>$user["nombre"],
     "email" => $user["email"],
     "roles" => $roles
@@ -71,3 +71,5 @@ echo json_encode([
 
 
 ]);
+
+?>

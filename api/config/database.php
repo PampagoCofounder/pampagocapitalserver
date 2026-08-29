@@ -19,17 +19,17 @@ class Database
     public function connect()
     {
         
-        
+        /*
         $host = "localhost";
         $db = "c2761701_pampadb";
         $user = "c2761701_pampadb";
-        $pass = "VE61foweba";
+        $pass = "VE61foweba";*/
         
-        /*
+        
         $host = "localhost";
         $db = "pampamind";
         $user = "root";
-        $pass = "";*/
+        $pass = "";
        
 
         try {

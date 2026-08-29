@@ -35,28 +35,26 @@ $routes = [
         "login" => "routes/login.php",
         "upload-clientes"=> "routes/upload_clientes.php",
         "solicitud_comex" => "routes/solicitud_comex.php",
-        "enviar_productos" => "routes/post_productos_comercializacion.php",
-        "enviar_proveedores" => "routes/post_proveedores_comercializacion.php",
-        "enviar_distribuidores" => "routes/post_distribuidores_comercializacion.php",
         "chatbot"=> "routes/post_chatbot.php",
-        "enviar_documentacion" => "routes/post_enviar_documentacion.php"
+        "enviar_documentacion" => "routes/post_enviar_documentacion.php",
+        "register" => "routes/register.php",
+        "enviar_documentacion_cliente" => "routes/post_enviar_documentacion_cliente.php"
+
 
     ],
     "GET" => [
         "clientes" => "routes/get_clientes.php",
         "dolar" => "routes/dolar.php",
         "riesgo" => "routes/riesgopais.php",
-        "datoscomex" => "routes/datos_comex.php",
-        "empresa" => "routes/get_empresa.php",
-        "empresa_comercio" => "routes/get_empresa_comercio.php",
-        "paises_exportadores" => "routes/datos_paises_exportador.php",
+
         "dolar_clp" => "routes/moneda_chilena.php",
-        "estado_comercializacion" => "routes/datos_comercializacion.php",
-        "obtener_productos" => "routes/get_productos_comercializacion.php",
-        "obtener_proveedor" => "routes/get_proveedores_comercializacion.php",
-        "obtener_distribuidor" => "routes/get_distribuidores_comercializacion.php",
-        "obtener_cartera_clientes" => "routes/get_cartera_clientes.php",
+
+
         "obtener_documentacion" => "routes/get_enviar_documentacion.php",
+        "obtener_datos_clientes" => "routes/get_clientes.php",
+        "obtener_productos_bancarios"=> "routes/get_productos_bancarios.php",
+        "obtener_cuotas_clientes" => "routes/get_cuotas_clientes.php",
+        "obtener_deuda_bcra" => "routes/get_central_deudores.php"
 
     ],
     "DELETE" => [
