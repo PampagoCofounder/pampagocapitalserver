@@ -18,6 +18,9 @@ $db = (new Database())->connect();
 $email = trim($data->email);
 $password = trim($data->password);
 
+echo $email;
+echo $password;
+
 /* 🔥 1. BUSCAR USUARIO */
 /*
 nueva tabla 
