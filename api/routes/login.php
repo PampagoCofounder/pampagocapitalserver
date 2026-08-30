@@ -33,12 +33,11 @@ $stmt->execute([$email]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 /* 🔥 2. VALIDAR USER + PASSWORD */
-/*
 if (!$user || !password_verify($password, $user["password"])) {
     http_response_code(401);
     echo json_encode(["error" => "Credenciales inválidas"]);
     exit();
-}*/
+}
 
 /* 🔥 3. TRAER ROLES */
 $stmt = $db->prepare("
