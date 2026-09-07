@@ -38,7 +38,8 @@ $routes = [
         "chatbot"=> "routes/post_chatbot.php",
         "enviar_documentacion" => "routes/post_enviar_documentacion.php",
         "register" => "routes/register.php",
-        "enviar_documentacion_cliente" => "routes/post_enviar_documentacion_cliente.php"
+        "enviar_documentacion_cliente" => "routes/post_enviar_documentacion_cliente.php",
+        "enviar_mensaje"=>"routes/post_enviar_mensajes.php",
 
 
     ],
@@ -48,13 +49,18 @@ $routes = [
         "riesgo" => "routes/riesgopais.php",
 
         "dolar_clp" => "routes/moneda_chilena.php",
+       
 
 
         "obtener_documentacion" => "routes/get_enviar_documentacion.php",
         "obtener_datos_clientes" => "routes/get_clientes.php",
         "obtener_productos_bancarios"=> "routes/get_productos_bancarios.php",
         "obtener_cuotas_clientes" => "routes/get_cuotas_clientes.php",
-        "obtener_deuda_bcra" => "routes/get_central_deudores.php"
+        "obtener_deuda_bcra" => "routes/get_central_deudores.php",
+        "obtener_mensajes" => "routes/get_obtener_mensajes.php",
+        "obtener_conversaciones" => "routes/get_obtener_conversaciones.php",
+        "admin_clientes" => "routes/get_admin_clientes.php",
+        "obtener_conversacion_cliente"=>"routes/get_obtener_conversacion_cliente.php"
 
     ],
     "DELETE" => [
